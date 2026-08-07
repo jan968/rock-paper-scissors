@@ -1,19 +1,23 @@
 "use strict";
 
 // 1. Computer randomly chooses rock, paper, or scissors
+
 function getComputerChoice() {
    const randomNumber = Math.floor(Math.random()*3);
-
-   let computerChoice;
    
    if(randomNumber === 0) {
-    computerChoice = 'Rock';
+    return 'Rock';
    } else if (randomNumber === 1) {
-    computerChoice = 'Paper';
+    return 'Paper';
    } else {
-    computerChoice = 'Scissors';
+    return 'Scissors';
    }
-   return computerChoice;
 }
 
-console.log(getComputerChoice());
+const getHumanChoice = () => prompt("Rock, paper, or scissors?");
+
+const computerChoice = getComputerChoice();
+const humanChoice = getHumanChoice();
+
+console.log(`Computer: ${computerChoice}
+Human: ${humanChoice}`);
