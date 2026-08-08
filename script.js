@@ -1,7 +1,5 @@
 "use strict";
 
-// 1. Computer choosing
-
 function getComputerChoice() {
    const randomNumber = Math.floor(Math.random()*3);
    
@@ -14,43 +12,68 @@ function getComputerChoice() {
    }
 }
 
-// 2. Get user input
 const getHumanChoice = () => prompt("Rock, paper, or scissors?");
 
-const computerChoice = getComputerChoice();
-const humanChoice = getHumanChoice();
+function playGame() {
+   let playerScore = 0;
+   let computerScore = 0;
+   const rounds = 5;
 
+   for(let i = 0; i<rounds; i++) {
+    console.log(playRound(getHumanChoice(), getComputerChoice()));
+   }
 
-// 3. Play one round
-    function playRound (computerChoice, humanChoice) {
+    function playRound (humanChoice, computerChoice) {
 
-        const computer = computerChoice.toLowerCase();
-        const human = humanChoice.toLowerCase();
-        let outcome;
-
+            const computer = computerChoice.toLowerCase();
+            const human = humanChoice.toLowerCase();
+            let outcome;
         
-        if(human === 'rock' && computer === 'paper') {
-            outcome = `Computer played ${computer}, you played ${human}. You lose! ${computer} beats ${human}!`;
-        } else if (human === 'rock' && computer === 'scissors') {
-            outcome = `Computer played ${computer}, you played ${human}. You win! ${human} beats ${computer}!`;
-        } else if (human === 'rock' && computer === 'rock') {
-            outcome = `Computer played ${computer}, you played ${human}. It's a draw!`;
-        } else if (human === 'paper' && computer === 'rock' ) {
-            outcome = `Computer played ${computer}, you played ${human}. You win! ${human} beats ${computer}!`;
-        } else if (human === 'paper' && computer === 'scissors' ) {
-            outcome = `Computer played ${computer}, you played ${human}. You lose! ${computer} beats ${human}!`;
-        } else if (human === 'paper' && computer === 'paper') {
-            outcome = `Computer played ${computer}, you played ${human}. It's a draw!`;
-        } else if (human === 'scissors' && computer === 'rock' ) {
-            outcome = `Computer played ${computer}, you played ${human}. You lose! ${computer} beats ${human}!`;
-        } else if (human === 'scissors' && computer === 'paper') {
-            outcome = `Computer played ${computer}, you played ${human}. You win! ${human} beats ${computer}!`;
-        } else if (human === 'scissors' && computer === 'scissors') {
-            outcome = `Computer played ${computer}, you played ${human}. It's a draw!`;
-        }
+            if(human === 'rock' && computer === 'paper') {
+                outcome = `Computer played ${computer}, you played ${human}. You lose! ${computer} beats ${human}!`;
+                computerScore++;
+            } else if (human === 'rock' && computer === 'scissors') {
+                outcome = `Computer played ${computer}, you played ${human}. You win! ${human} beats ${computer}!`;
+                playerScore++;
+            } else if (human === 'rock' && computer === 'rock') {
+                outcome = `Computer played ${computer}, you played ${human}. It's a draw!`;
+            } else if (human === 'paper' && computer === 'rock' ) {
+                outcome = `Computer played ${computer}, you played ${human}. You win! ${human} beats ${computer}!`;
+                playerScore++;
+            } else if (human === 'paper' && computer === 'scissors' ) {
+                outcome = `Computer played ${computer}, you played ${human}. You lose! ${computer} beats ${human}!`;
+                computerScore++;
+            } else if (human === 'paper' && computer === 'paper') {
+                outcome = `Computer played ${computer}, you played ${human}. It's a draw!`;
+            } else if (human === 'scissors' && computer === 'rock' ) {
+                outcome = `Computer played ${computer}, you played ${human}. You lose! ${computer} beats ${human}!`;
+                computerScore++;
+            } else if (human === 'scissors' && computer === 'paper') {
+                outcome = `Computer played ${computer}, you played ${human}. You win! ${human} beats ${computer}!`;
+                playerScore++;
+            } else if (human === 'scissors' && computer === 'scissors') {
+                outcome = `Computer played ${computer}, you played ${human}. It's a draw!`;
+            }
 
-        return outcome;
+            return outcome;
     }
 
-const result = playRound(computerChoice, humanChoice);
-console.log(result);
+            console.log('-'.repeat(12));
+
+            console.log(`Final score:
+Human: ${playerScore} 
+Computer: ${computerScore}`);
+
+            if(playerScore > computerScore) {
+                console.log('Player wins');
+            } else if (playerScore < computerScore) {
+                console.log('Computer wins');
+            } else {
+                console.log('It\'s a draw');
+            }
+
+            console.log('-'.repeat(12));
+
+}
+
+playGame();
